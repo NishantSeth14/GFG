@@ -1,0 +1,43 @@
+class twoStacks
+{
+    public:
+
+    vector<pair<int,int>> arr;
+    int i , j;
+    
+    twoStacks()
+    {
+        i = 0, j = 0;
+        arr.push_back({-1,0});
+    }
+ 
+    //Function to push an integer into the stack1.
+    void push1(int x)
+    {
+        arr.push_back({x,i});
+        i = arr.size()-1;
+    }
+    
+    //Function to push an integer into the stack2.
+    void push2(int x)
+    {
+       arr.push_back({x,j});
+       j = arr.size()-1;
+    }
+    
+    //Function to remove an element from top of the stack1.
+    int pop1()
+    {
+        int ans = arr[i].first;
+        i = arr[i].second;
+        return ans;
+    }
+    
+    //Function to remove an element from top of the stack2.
+    int pop2()
+    {
+       int ans =arr[j].first;
+       j = arr[j].second;
+       return ans;
+    }
+};
