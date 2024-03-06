@@ -1,0 +1,32 @@
+public:
+    //Function to evaluate a postfix expression.
+    int evaluatePostfix(string S)
+    {
+        stack<int> st;
+        for(int i=0; i<S.length(); i++){
+            if(S[i] == '+' || S[i] == '-' || S[i] == '*' || S[i] == '/'){
+                int first = st.top();
+                st.pop();
+                int second = st.top();
+                st.pop();
+                int res;
+                if(S[i] == '+'){
+                    res = first + second;
+                }
+                else if(S[i] == '-'){
+                    res = second - first;
+                }
+                else if(S[i] == '*'){
+                    res = first * second;
+                }
+                else{
+                    res = second / first;
+                }
+                st.push(res);
+            }
+            else{
+                st.push(S[i] - 48);
+            }
+        }
+        return st.top();
+    }
