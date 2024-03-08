@@ -1,0 +1,25 @@
+void insetSortedStack(stack<int> &st, int num){
+    if(st.empty() || num > st.top()){
+        st.push(num);
+        return;
+    }
+    int temp = st.top();
+    st.pop();
+    insetSortedStack(st,num);
+    st.push(temp);
+}
+
+void solve(stack<int> &st){
+    if(st.empty()){
+        return;
+    }
+    int temp = st.top();
+    st.pop();
+    solve(st);
+    insetSortedStack(st,temp);
+}
+
+void SortedStack :: sort()
+{
+   solve(s);
+}
