@@ -1,0 +1,23 @@
+long long getMaxArea(long long arr[], int n)
+    {
+        stack<long long > s;
+        long long res=0;
+        for(int i=0;i<n;i++)
+        {
+            while(!s.empty() && arr[s.top()]>=arr[i])
+            {
+                long long ip=s.top();
+                s.pop();
+                long long curr=arr[ip]*(s.empty()?i:(i-s.top()-1));
+                res=max(curr,res);
+            }
+             s.push(i);
+        }
+        while(!s.empty()){
+            long long ip=s.top();
+            s.pop();
+            long long curr=arr[ip]*(s.empty()?n:(n-s.top()-1));
+            res=max(res,curr);
+        }
+        return res;
+    }
