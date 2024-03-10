@@ -1,0 +1,30 @@
+public:
+    int findMaxLen(string s) {
+        int n = s.size();
+        stack<int> st;
+        if(n < 2){
+            return 0;
+        }
+        for(int i=0; i<n; i++){
+            if(s[i] == '('){
+                st.push(i);
+            }
+            else{
+                if(!st.empty() && s[st.top()] == '('){
+                    st.pop();
+                }
+                else{
+                    st.push(i);
+                }
+            }
+        }
+        int maxi = 0;
+        int end = s.length();
+        while(!st.empty()){
+            int ele = st.top();
+            st.pop();
+            maxi = max(maxi,end-ele-1);
+            end = ele;
+        }
+        return max(maxi,end);
+    }
