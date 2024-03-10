@@ -1,0 +1,27 @@
+public:
+    int checkRedundancy(string s) {
+        stack<int> st;
+        int i=0;
+        while(i < s.length()){
+            if(s[i] == ')'){
+                int flag = 0;
+                while(st.top() != '('){
+                    if(st.top() == '+' || st.top() == '-' || st.top() == '*' || st.top() == '/'){
+                        flag = 1;
+                    }
+                    st.pop();
+                }
+                st.pop();
+                if(flag == 1){
+                    i++;
+                }
+                else{
+                    return 1;
+                }
+            }
+            else{
+                st.push(s[i++]);
+            }
+        }
+        return 0;
+    }
