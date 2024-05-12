@@ -1,0 +1,59 @@
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution
+{
+	public:
+	
+	    void solve(set<string>& permSet, int index, string S){
+	        //base case
+	        if(index >= S.size()){
+	            permSet.insert(S);
+	            return;
+	        }
+	        for(int j=index; j<S.size(); j++){
+	            swap(S[j], S[index]);
+	            solve(permSet, index+1, S);
+	            swap(S[j], S[index]);
+	        }
+	    }
+	
+		vector<string>find_permutation(string S)
+		{
+		    set<string> permSet;
+		    vector<string> ans;
+		    int index = 0;
+		    sort(S.begin(), S.end());
+		    solve(permSet, index, S);
+		    for(const auto&ch : permSet){
+		        ans.push_back(ch);
+		    }
+		    return ans;
+		}
+};
+
+
+
+//{ Driver Code Starts.
+int main(){
+    int t;
+    cin >> t;
+    while(t--)
+    {
+	    string S;
+	    cin >> S;
+	    Solution ob;
+	    vector<string> ans = ob.find_permutation(S);
+	    sort(ans.begin(),ans.end());
+	    for(auto i: ans)
+	    {
+	    	cout<<i<<" ";
+	    }
+	    cout<<"\n";
+    }
+	return 0;
+}
+
+// } Driver Code Ends
